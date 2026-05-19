@@ -1,33 +1,38 @@
-document.getElementById('upl-form').addEventListener("submit", e => {
+document.getElementById('upl-form').addEventListener("submit", async e => {
     e.preventDefault();
-    
-    savePosts();
-    loadPosts();
 
+    await savePosts();
+    await loadPosts();
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
-function savePosts(){
-    const imgData = canvas.toDataURL('image/png');
+async function savePosts(){
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
-    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
-    posts.push(imgData);
+    const formData = new FormData();
+    formData.append('image', blob, 'drawing.png');
 
-    localStorage.setItem('posts', JSON.stringify(posts));
+    await fetch('ceraw-backend-production.up.railway.app/drawings', {
+        method: 'POST',
+        body: formData,
+    });
 }
 
-function loadPosts(){
-    const post = JSON.parse(localStorage.getItem('posts') || '[]');
-    document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
+async function loadPosts(){
+    const response = await fetch('ceraw-backend-production.up.railway.app/drawings');
+    const drawings = await response.json();
 
-    post.forEach(item => {
+    drawings.forEach(drawing => {
         const img = document.createElement('img');
-        img.src = item;
-        img.id = "canvas-post"
+        img.src = drawing.url;
+        img.id = "canvas-post";
         document.getElementById('post-el').appendChild(img);
-    })
+    });
 }
 
-window.onload = function(){
-    loadPosts();
+window.onload = async function(e){
+    e.preventDefault();
+
+    await loadPosts();
 }
