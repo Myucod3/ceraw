@@ -13,14 +13,14 @@ async function savePosts(){
     const formData = new FormData();
     formData.append('image', blob, 'drawing.png');
 
-    await fetch('ceraw-backend-production.up.railway.app/drawings', {
+    await fetch('https://ceraw-backend.onrender.com/drawings', {
         method: 'POST',
         body: formData,
     });
 }
 
 async function loadPosts(){
-    const response = await fetch('ceraw-backend-production.up.railway.app/drawings');
+    const response = await fetch('https://ceraw-backend.onrender.com/drawings');
     const drawings = await response.json();
 
     drawings.forEach(drawing => {
