@@ -14,16 +14,9 @@ document.getElementById('upl-form').addEventListener("submit", async e => {
 
 async function savePosts(){
     try{
-        const blank = document.createElement('canvas');
-        blank.width = canvas.width;
-        blank.height = canvas.height;
-    
-        if (canvas.toDataURL() === blank.toDataURL()) {
-            alert('Рисуй!!!!!!!');
-            return
-        }
-        
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+
+        if(!blob) return;
     
         const formData = new FormData();
         formData.append('image', blob, 'drawing.png');
@@ -43,9 +36,11 @@ async function loadPosts(){
     const response = await fetch(`${API_URL}/drawings`);
     const drawings = await response.json();
     
-    if (drawings.length === lastCount) return;
+    const postEl = document.getElementById('post-el');
         
     drawings.forEach(addImage);
+
+    lastCount = drawings.length
 }
 
 function addImage(drawing){
