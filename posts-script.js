@@ -8,6 +8,15 @@ document.getElementById('upl-form').addEventListener("submit", async e => {
 });
 
 async function savePosts(){
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width;
+    blank.height = canvas.height;
+
+    if (canvas.toDataURL() === blank.toDataURL()) {
+        alert('Рисуй!!!!!!!');
+        return
+    }
+    
     const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
     const formData = new FormData();
