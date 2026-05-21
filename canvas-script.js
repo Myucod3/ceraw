@@ -6,27 +6,27 @@ let erasing = false;
 let brushColor = 'black';
 let brushSize = 2;
 
-document.getElementById('2px-btn').onclick () => {
+document.getElementById('2px-btn').onclick = () => {
     brushSize = 2;
     brushSizeInfo();
 };
 
-document.getElementById('4px-btn').onclick () => {
+document.getElementById('4px-btn').onclick = () => {
     brushSize = 4;
     brushSizeInfo();
 };
 
-document.getElementById('6px-btn').onclick () => {
+document.getElementById('6px-btn').onclick = () => {
     brushSize = 6;
     brushSizeInfo();
 };
 
-document.getElementById('8px-btn').onclick () => {
+document.getElementById('8px-btn').onclick = () => {
     brushSize = 8;
     brushSizeInfo();
 };
 
-document.getElementById('tool-ers').onclick () => {
+document.getElementById('tool-ers').onclick = () => {
     erasing = !erasing;
 
     document.getElementById('tool-ers').textContent = erasing ? "Pen" : "Eraser";
