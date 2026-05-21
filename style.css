@@ -87,3 +87,9 @@ footer {
 #canvas-post {
     border: 1px solid #000000;
 }
+
+@media(max-width: 600px){
+    aside, footer {
+        display: none;
+    }
+}
