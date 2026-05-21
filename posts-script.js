@@ -29,6 +29,7 @@ async function savePosts(){
 }
 
 async function loadPosts(){
+    document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
     const response = await fetch('https://telecharger-diff-suite-antenna.trycloudflare.com/drawings');
     const drawings = await response.json();
 
@@ -45,3 +46,5 @@ window.onload = async function(e){
 
     await loadPosts();
 }
+
+setInterval(loadPosts, 5000)
