@@ -2,7 +2,7 @@ const API_URL = 'https://edit-additions-links-rebates.trycloudflare.com';
 
 const socket = io(API_URL);
 
-let lastCount = 0;
+const shown = new Set();
 
 document.getElementById('upl-form').addEventListener("submit", async e => {
     e.preventDefault();
@@ -25,7 +25,6 @@ async function savePosts(){
             method: 'POST',
             body: formData,
         });
-        lastCount = 0;
     }catch (err){
         console.error(err);
         alert('Ошибка загрузки')
@@ -37,13 +36,17 @@ async function loadPosts(){
     const drawings = await response.json();
     
     const postEl = document.getElementById('post-el');
-        
-    drawings.forEach(addImage);
 
-    lastCount = drawings.length
+    postEl.innerHTML = '<h3>Uploads</h3>';
+    shown.clear();
+    
+    drawings.forEach(addImage);
 }
 
 function addImage(drawing){
+    if (shown.has(drawing.url)) return;
+    shown.add(drawing.url);
+    
     const img = document.createElement('img');
     img.src = drawing.url;
     img.className = 'canvas-post';
@@ -54,8 +57,6 @@ socket.on('new-post', drawing => {
     addImage(drawing);
 });
 
-window.onload = async function(e){
-    e.preventDefault();
-
+window.onload = async function(){
     await loadPosts();
 }
