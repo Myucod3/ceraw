@@ -35,7 +35,7 @@ async function loadPosts(){
     const response = await fetch('https://telecharger-diff-suite-antenna.trycloudflare.com/drawings');
     const drawings = await response.json();
 
-    if (drawing.length === lastCount) return;
+    if (drawings.length === lastCount) return;
 
     lastCount = drawings.length;
     document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
