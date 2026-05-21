@@ -1,3 +1,5 @@
+let lastCount = 0;
+
 document.getElementById('upl-form').addEventListener("submit", async e => {
     e.preventDefault();
 
@@ -29,10 +31,14 @@ async function savePosts(){
 }
 
 async function loadPosts(){
-    document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
     const response = await fetch('https://telecharger-diff-suite-antenna.trycloudflare.com/drawings');
     const drawings = await response.json();
 
+    if (drawing.length === lastCount) return;
+
+    lastCount = drawings.length;
+    document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
+    
     drawings.forEach(drawing => {
         const img = document.createElement('img');
         img.src = drawing.url;
@@ -46,5 +52,3 @@ window.onload = async function(e){
 
     await loadPosts();
 }
-
-setInterval(loadPosts, 5000)
