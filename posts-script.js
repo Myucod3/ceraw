@@ -1,4 +1,4 @@
- const API_URL = 'https://edit-additions-links-rebates.trycloudflare.com';
+const API_URL = 'https://edit-additions-links-rebates.trycloudflare.com';
 
 const socket = io(API_URL);
 
