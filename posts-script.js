@@ -28,6 +28,7 @@ async function savePosts(){
         method: 'POST',
         body: formData,
     });
+    lastCount = 0;
 }
 
 async function loadPosts(){
