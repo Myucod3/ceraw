@@ -11,6 +11,10 @@ body {
     background-color: #f5f5f5;
 }
 
+header {
+    display: none;
+}
+
 aside {
     position: sticky;
     top: 0;
