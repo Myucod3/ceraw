@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="buttons.css">
     <title>ceraw</title>
 </head>
 <body>
@@ -16,33 +17,43 @@
     <main>
         <h2>canvas</h2>
 
-        <section>
+        <section class="post__upload">
             <div>
-                <div>
-                    <p>Colors coming soon</p>
-                </div>
-                <div class="toolbox__sizes">
-                    <button id="2px-btn">2px</button>
-                    <button id="4px-btn">4px</button>
-                    <button id="6px-btn">6px</button>
-                    <button id="8px-btn">8px</button>
-                    <button id="tool-ers">Eraser</button>
-                    <button id="tool-clr">Clear</button>
-                    <span id="brs-size-inf"></span>
+                <div class="toolbox">
+                    <div>
+                        <p>Colors coming soon</p>
+                    </div>
+                    <div class="toolbox-sizes-other">
+                        <div class="toolbox__sizes">
+                            <button id="2px-btn" class="size__button">2px</button>
+                            <button id="4px-btn" class="size__button">4px</button>
+                            <button id="6px-btn" class="size__button">6px</button>
+                            <button id="8px-btn" class="size__button">8px</button>
+                        </div>
+                        <div class="toolbox__other">
+                            <button id="tool-ers" class="tool__other">Eraser</button>
+                            <button id="tool-clr" class="tool__other">Clear</button>
+                        </div>
+                        <span id="brs-size-inf" class="tool-size-info"></span>
+                    </div>
                 </div>
             </div>
-            <canvas id="post" width="300" height="300"></canvas>
+            <canvas id="post" width="500" height="500"></canvas>
             <form id="upl-form">
-                <button type="submit">Upload</button>
+                <button type="submit" class="upload__button">Upload</button>
             </form>
         </section>
 
         <section class="posts-page" id="upl-pg">
+            <h3>Uploads</h3>
             <div class="posts-elements" id="post-el">
 
             </div>
         </section>
     </main>
+    <footer>
+        <p>footer</p>
+    </footer>
     <script src="canvas-script.js"></script>
     <script src="posts-script.js"></script>
 </body>
