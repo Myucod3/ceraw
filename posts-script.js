@@ -61,7 +61,7 @@ function addImage(drawing, realtime = false){
 }
 
 socket.on('new-post', drawing => {
-    addImage(drawing);
+    addImage(drawing, true);
 });
 
 window.onload = async function(){
