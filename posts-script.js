@@ -40,17 +40,24 @@ async function loadPosts(){
     postEl.innerHTML = '<h3>Uploads</h3>';
     shown.clear();
     
-    drawings.forEach(addImage);
+    drawings.forEach(drawing => {
+        addImage(drawing, false);
+    });
 }
 
-function addImage(drawing){
+function addImage(drawing, realtime = false){
     if (shown.has(drawing.url)) return;
     shown.add(drawing.url);
     
     const img = document.createElement('img');
     img.src = drawing.url;
     img.className = 'canvas-post';
-    document.getElementById('post-el').appendChild(img);
+
+    if (realtime) {
+        document.getElementById('post-el').prepend(img);
+    } else {
+        document.getElementById('post-el').appendChild(img);
+    }
 }
 
 socket.on('new-post', drawing => {
