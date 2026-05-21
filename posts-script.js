@@ -7,6 +7,7 @@ let lastCount = 0;
 document.getElementById('upl-form').addEventListener("submit", async e => {
     e.preventDefault();
 
+    await loadPosts();
     await savePosts();
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
