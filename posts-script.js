@@ -7,7 +7,6 @@ let lastCount = 0;
 document.getElementById('upl-form').addEventListener("submit", async e => {
     e.preventDefault();
 
-    await loadPosts();
     await savePosts();
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -41,19 +40,12 @@ async function savePosts(){
 }
 
 async function loadPosts(){
-    try{
-        const response = await fetch(`${API_URL}/drawings`);
-        const drawings = await response.json();
+    const response = await fetch(`${API_URL}/drawings`);
+    const drawings = await response.json();
     
-        if (drawings.length === lastCount) return;
-    
-        lastCount = drawings.length;
-        document.getElementById('post-el').innerHTML = '<h3>Uploads</h3>';
+    if (drawings.length === lastCount) return;
         
-        drawings.forEach(AddImage);
-    }catch (err) {
-        console.error(err)
-    }
+    drawings.forEach(addImage);
 }
 
 function addImage(drawing){
