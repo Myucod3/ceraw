@@ -1,4 +1,4 @@
-const API_URL = 'https://telecharger-diff-suite-antenna.trycloudflare.com';
+const API_URL = 'https://edit-additions-links-rebates.trycloudflare.com';
 
 let lastCount = 0;
 
