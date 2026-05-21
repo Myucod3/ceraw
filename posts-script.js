@@ -20,7 +20,7 @@ async function savePosts(){
 }
 
 async function loadPosts(){
-    const response = await fetch('https://led-intelligent-prayers-speeches.trycloudflare.com /drawings');
+    const response = await fetch('https://led-intelligent-prayers-speeches.trycloudflare.com/drawings');
     const drawings = await response.json();
 
     drawings.forEach(drawing => {
