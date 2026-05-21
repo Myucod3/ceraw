@@ -50,7 +50,7 @@ function addImage(drawing){
     const img = document.createElement('img');
     img.src = drawing.url;
     img.className = 'canvas-post';
-    document.getElementById('post-el').prepend(img);
+    document.getElementById('post-el').appendChild(img);
 }
 
 socket.on('new-post', drawing => {
